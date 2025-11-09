@@ -36,7 +36,6 @@ littinrajan.github.io/
 ├── package.json
 └── README.md
 
-
 ---
 
 ## 🧠 Available Scripts
