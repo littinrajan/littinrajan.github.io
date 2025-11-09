@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Mail, Linkedin, FileText } from 'lucide-react';
+import { ArrowDown, Mail, Linkedin } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Hero = () => {

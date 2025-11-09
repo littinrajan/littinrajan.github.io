@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, TrendingUp, Brain, Map, Activity } from 'lucide-react';
+import { TrendingUp, Brain, Map, Activity } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 const Projects = () => {
