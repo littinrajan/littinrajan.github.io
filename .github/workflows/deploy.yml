@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: app/frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,8 +26,8 @@ jobs:
         with:
           node-version: 20
 
-      # If package-lock.json exists, use npm ci; otherwise fallback to npm install
       - name: Install dependencies
+        working-directory: app/frontend
         run: |
           if [ -f package-lock.json ]; then
             npm ci
@@ -39,16 +36,20 @@ jobs:
           fi
 
       - name: Build
+        working-directory: app/frontend
         run: npm run build
 
-      # Required by GitHub Pages before uploading
-      - name: Configure Pages
+      - name: List build output (debug)
+        run: ls -la "${{ github.workspace }}/app/frontend/build"
+
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: app/frontend/build
+          # IMPORTANT: absolute path from workspace root
+          path: ${{ github.workspace }}/app/frontend/build
 
   deploy:
     needs: build
